@@ -1,0 +1,51 @@
+.timer-box {
+  border: none;
+  padding: 2em;
+  text-align: center;
+  background-color: antiquewhite;
+  margin: 2em;
+  border-radius: 7px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  max-width: 450px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 5px;
+}
+
+button {
+  border: none;
+  padding: 0.5em 1em;
+  background-color: burlywood;
+  border-radius: 3.5px;
+}
+
+.inp-grp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1em;
+  font-size: 1rem;
+}
+
+.inp-grp label {
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: #5a5a5a;
+}
+
+.inp-grp input {
+  width: 100%;
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #fffaf0;
+}
