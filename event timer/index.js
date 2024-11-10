@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector(".add");
   const container = document.querySelector(".box");
+  const refreshBtn = document.querySelector(".refresh");
+
   let boxCount = 0;
 
   function createTimerBox() {
@@ -54,13 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
       msg.innerHTML = `Coding Ninjas: remaining time: ${requiredCount}`;
 
       if (requiredCount <= 0) {
-        alert(`${name} is to be executed`);
+        alert(`Time's Up for event ${name} and event number ${boxCount}`);
         clearInterval(result);
         msg.innerHTML = "";
       }
     }, 1000);
   }
 
+  function refreshWindow() {
+    location.reload();
+  }
+
   createTimerBox();
   addBtn.addEventListener("click", createTimerBox);
+  refreshBtn.addEventListener("click", refreshWindow);
 });
