@@ -1,0 +1,7 @@
+<% blogs.forEach((blog) => { %>
+<div class="jumbotron">
+  <h1><%= blog.title %></h1>
+  <p class="lead"><%= blog.description %></p>
+  <img class="btn btn-lg btn-primary" src="<%=blog.img%>" role="button" />
+</div>
+<% }); %>
