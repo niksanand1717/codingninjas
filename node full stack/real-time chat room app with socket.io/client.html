@@ -1,0 +1,97 @@
+<!-- No need to change the pre-written code.
+Implement the features inside the script tag -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat-Room App</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+  </head>
+
+  <body>
+    <div id="login-container">
+      <!-- form to enter username and room ID -->
+      <form id="login-form">
+        <input
+          type="text"
+          id="username-input"
+          placeholder="Enter your username"
+          required
+        />
+        <input
+          type="text"
+          id="room-input"
+          placeholder="Enter room ID"
+          required
+        />
+        <button id="start-chatting" type="submit">Start Chatting</button>
+      </form>
+    </div>
+
+    <div id="chat-container">
+      <!-- message display area -->
+      <div id="message-display">
+        <!-- Messages will be appended here -->
+      </div>
+
+      <!-- form to send messages -->
+      <form id="message-form">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Type your message"
+          required
+        />
+        <button id="send-message" type="submit">Send</button>
+      </form>
+    </div>
+
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io.connect("http://localhost:3000");
+
+      // ----------------- Write your code here ---------------
+      const username = document.getElementById("username-input");
+      const room = document.getElementById("room-input");
+      const startChatting = document.getElementById("start-chatting");
+      const messageInput = document.getElementById("message-input");
+      const sendMessage = document.getElementById("send-message");
+
+      startChatting.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent form submission
+        const userName = username.value.trim();
+        const roomID = room.value.trim();
+
+        if (!userName || !roomID) {
+          alert("Please fill out both username and room ID.");
+          return;
+        }
+
+        currentRoom = roomID;
+        socket.emit("initial", userName, roomID);
+
+        // Show chat container and hide login container
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("chat-container").style.display = "block";
+      });
+
+      // Send message: emit message event
+      sendMessage.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent form submission
+        const message = messageInput.value.trim();
+
+        if (message) {
+          socket.emit("send_message", { room: currentRoom, message });
+          messageInput.value = ""; // Clear input after sending
+        }
+      });
+
+      // Listen for incoming messages
+      socket.on("receive_message", (data) => {
+        const messageElement = document.createElement("div");
+        messageElement.textContent = `${data.sender}: ${data.message}`;
+        messageDisplay.appendChild(messageElement);
+      });
+    </script>
+  </body>
+</html>
