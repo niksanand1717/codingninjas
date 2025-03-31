@@ -1,0 +1,9 @@
+<%- include('../layout/layout') %>
+<h2>Available Jobs</h2>
+
+<ul>
+  <% jobs.forEach(job => { %>
+  <li><a href="/jobs/<%= job.id %>"><%= job.title %></a></li>
+  <% }) %>
+</ul>
+<a href="/jobs/new">Post a Job</a>

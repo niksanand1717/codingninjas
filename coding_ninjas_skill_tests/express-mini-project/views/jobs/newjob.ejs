@@ -1,0 +1,16 @@
+<%- include('../layout/layout.ejs') %>
+<form action="/jobs" method="POST">
+  <label>Title:</label>
+  <input type="text" name="title" required />
+  <label>Description:</label>
+  <textarea name="description" required></textarea>
+  <label>Company:</label>
+  <input type="text" name="company" required />
+  <label>Location:</label>
+  <input type="text" name="location" required />
+  <label>Salary:</label>
+  <input type="number" name="salary" required />
+  <label>Skills:</label>
+  <input type="text" name="skills" required />
+  <button type="submit">Post Job</button>
+</form>
